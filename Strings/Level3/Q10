@@ -1,0 +1,28 @@
+import java.util.*;
+
+class WordStats {
+    // Method to compute word count and average length
+    public static void computeStats(String str) {
+        String[] words = str.split(" ");
+        int wordCount = words.length;
+        int totalLength = 0;
+
+        for (String word : words) {
+            totalLength += word.length();
+        }
+
+        double avgLength = (double) totalLength / wordCount;
+
+        System.out.println("Total Words: " + wordCount);
+        System.out.println("Average Word Length: " + avgLength);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a sentence: ");
+        String str = sc.nextLine();
+
+        computeStats(str);
+    }
+}

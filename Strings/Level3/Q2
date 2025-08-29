@@ -1,0 +1,23 @@
+import java.util.*;
+
+class UniqueCharacters {
+    // Method to find unique characters
+    public static void findUnique(String str) {
+        HashSet<Character> set = new HashSet<>();
+        System.out.print("Unique characters: ");
+        for (char c : str.toCharArray()) {
+            if (!set.contains(c)) {
+                set.add(c);
+                System.out.print(c + " ");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String str = sc.nextLine();
+
+        findUnique(str);
+    }
+}
