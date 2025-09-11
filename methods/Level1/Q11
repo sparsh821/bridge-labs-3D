@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class TrigonometricCalculator {
+
+    public static double[] calculateTrigonometricFunctions(double angle) {
+        double angleRadians = Math.toRadians(angle);
+        double sine = Math.sin(angleRadians);
+        double cosine = Math.cos(angleRadians);
+        double tangent = Math.tan(angleRadians);
+        return new double[] { sine, cosine, tangent };
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter angle in degrees: ");
+        double angle = sc.nextDouble();
+
+        double[] trigFunctions = calculateTrigonometricFunctions(angle);
+
+        System.out.printf("Sine: %.4f\n", trigFunctions[0]);
+        System.out.printf("Cosine: %.4f\n", trigFunctions[1]);
+        System.out.printf("Tangent: %.4f\n", trigFunctions[2]);
+
+        sc.close();
+    }
+}
