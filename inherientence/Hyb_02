@@ -1,0 +1,43 @@
+// Superclass
+class Vehicle {
+    String model;
+    double maxSpeed;
+
+    Vehicle(String model, double maxSpeed) {
+        this.model = model;
+        this.maxSpeed = maxSpeed;
+    }
+}
+
+// Interface
+interface Refuelable {
+    void refuel();
+}
+
+// Subclass ElectricVehicle
+class ElectricVehicle extends Vehicle {
+    double batteryLevel;
+
+    ElectricVehicle(String model, double maxSpeed, double batteryLevel) {
+        super(model, maxSpeed);
+        this.batteryLevel = batteryLevel;
+    }
+
+    void charge() {
+        System.out.println(model + " is charging.");
+    }
+}
+
+// Subclass PetrolVehicle implementing Refuelable
+class PetrolVehicle extends Vehicle implements Refuelable {
+    double fuelLevel;
+
+    PetrolVehicle(String model, double maxSpeed, double fuelLevel) {
+        super(model, maxSpeed);
+        this.fuelLevel = fuelLevel;
+    }
+
+    public void refuel() {
+        System.out.println(model + " is refueling.");
+    }
+}

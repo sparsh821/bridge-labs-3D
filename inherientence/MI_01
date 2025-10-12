@@ -1,0 +1,44 @@
+// Base class
+class Order {
+    int orderId;
+    String orderDate;
+
+    Order(int orderId, String orderDate) {
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+    }
+
+    String getOrderStatus() {
+        return "Order Placed";
+    }
+}
+
+// Subclass
+class ShippedOrder extends Order {
+    String trackingNumber;
+
+    ShippedOrder(int orderId, String orderDate, String trackingNumber) {
+        super(orderId, orderDate);
+        this.trackingNumber = trackingNumber;
+    }
+
+    @Override
+    String getOrderStatus() {
+        return "Order Shipped, Tracking Number: " + trackingNumber;
+    }
+}
+
+// Subclass extending ShippedOrder
+class DeliveredOrder extends ShippedOrder {
+    String deliveryDate;
+
+    DeliveredOrder(int orderId, String orderDate, String trackingNumber, String deliveryDate) {
+        super(orderId, orderDate, trackingNumber);
+        this.deliveryDate = deliveryDate;
+    }
+
+    @Override
+    String getOrderStatus() {
+        return "Order Delivered on " + deliveryDate;
+    }
+}
