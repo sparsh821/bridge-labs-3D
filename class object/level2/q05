@@ -1,0 +1,47 @@
+class CartItem {
+    String itemName;
+    double price;
+    int quantity;
+
+    CartItem(String itemName, double price, int quantity) {
+        this.itemName = itemName;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    void addItem(int qty) {
+        if (qty > 0) {
+            quantity += qty;
+            System.out.println(qty + " " + itemName + "(s) added to the cart.");
+        } else {
+            System.out.println("Invalid quantity.");
+        }
+    }
+
+    void removeItem(int qty) {
+        if (qty > 0 && qty <= quantity) {
+            quantity -= qty;
+            System.out.println(qty + " " + itemName + "(s) removed from the cart.");
+        } else {
+            System.out.println("Invalid quantity or not enough items in the cart.");
+        }
+    }
+
+    double calculateTotalCost() {
+        return price * quantity;
+    }
+
+    void displayTotalCost() {
+        System.out.println("Item: " + itemName);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Price per Item: " + price);
+        System.out.println("Total Cost: " + calculateTotalCost());
+    }
+
+    public static void main(String[] args) {
+        CartItem item1 = new CartItem("Laptop", 50000.0, 1);
+        item1.addItem(2);
+        item1.removeItem(1);
+        item1.displayTotalCost();
+    }
+}
