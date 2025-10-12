@@ -1,0 +1,55 @@
+class Product {
+    // Static variable shared across all products
+    static double discount = 10.0; // 10% default discount
+
+    // Static method to update discount
+    static void updateDiscount(double newDiscount) {
+        discount = newDiscount;
+    }
+
+    // Final variable - unique product ID
+    final int productID;
+
+    // Instance variables
+    String productName;
+    double price;
+    int quantity;
+
+    // Constructor using 'this' to resolve ambiguity
+    Product(int productID, String productName, double price, int quantity) {
+        this.productID = productID;
+        this.productName = productName;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    // Instance method to display product details
+    void displayDetails() {
+        // Check if this object is an instance of Product
+        if (this instanceof Product) {
+            System.out.println("Product ID: " + productID);
+            System.out.println("Product Name: " + productName);
+            System.out.println("Price: " + price);
+            System.out.println("Quantity: " + quantity);
+            System.out.println("Discount: " + discount + "%");
+            System.out.println("Total Cost after Discount: " + (price * quantity * (1 - discount / 100)));
+        } else {
+            System.out.println("Not a valid Product object.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Product p1 = new Product(101, "Laptop", 50000, 2);
+        Product p2 = new Product(102, "Smartphone", 20000, 3);
+
+        p1.displayDetails();
+        p2.displayDetails();
+
+        // Update discount for all products
+        Product.updateDiscount(15.0);
+
+        System.out.println("\nAfter updating discount:");
+        p1.displayDetails();
+        p2.displayDetails();
+    }
+}

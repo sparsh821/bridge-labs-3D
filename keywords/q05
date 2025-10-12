@@ -1,0 +1,61 @@
+class Student {
+    // Static variable shared across all students
+    static String universityName = "Global University";
+    private static int totalStudents = 0;
+
+    // Final variable - unique roll number
+    final int rollNumber;
+
+    // Instance variables
+    String name;
+    char grade;
+
+    // Constructor using 'this' to initialize instance variables
+    Student(int rollNumber, String name, char grade) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.grade = grade;
+        totalStudents++;
+    }
+
+    // Public method to update grade
+    public void updateGrade(char newGrade) {
+        if (this instanceof Student) {
+            this.grade = newGrade;
+        } else {
+            System.out.println("Invalid Student object.");
+        }
+    }
+
+    // Instance method to display student details
+    public void displayDetails() {
+        if (this instanceof Student) {
+            System.out.println("University: " + universityName);
+            System.out.println("Roll Number: " + rollNumber);
+            System.out.println("Name: " + name);
+            System.out.println("Grade: " + grade);
+        } else {
+            System.out.println("Not a valid Student object.");
+        }
+    }
+
+    // Static method to display total number of students
+    static void displayTotalStudents() {
+        System.out.println("Total Students Enrolled: " + totalStudents);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student(101, "Amit Kumar", 'A');
+        Student s2 = new Student(102, "Priya Sharma", 'B');
+
+        s1.displayDetails();
+        s2.displayDetails();
+
+        // Update grade
+        s2.updateGrade('A');
+        System.out.println("\nAfter updating grade:");
+        s2.displayDetails();
+
+        Student.displayTotalStudents();
+    }
+}

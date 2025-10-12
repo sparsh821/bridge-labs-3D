@@ -1,0 +1,51 @@
+class Vehicle {
+    // Static variable shared by all vehicles
+    static double registrationFee = 500.0;
+
+    // Static method to update registration fee
+    static void updateRegistrationFee(double newFee) {
+        registrationFee = newFee;
+    }
+
+    // Final variable - unique registration number
+    final String registrationNumber;
+
+    // Instance variables
+    String ownerName;
+    String vehicleType;
+
+    // Constructor using 'this' to initialize instance variables
+    Vehicle(String registrationNumber, String ownerName, String vehicleType) {
+        this.registrationNumber = registrationNumber;
+        this.ownerName = ownerName;
+        this.vehicleType = vehicleType;
+    }
+
+    // Instance method to display vehicle details
+    void displayDetails() {
+        // Check if this object is an instance of Vehicle
+        if (this instanceof Vehicle) {
+            System.out.println("Owner Name: " + ownerName);
+            System.out.println("Vehicle Type: " + vehicleType);
+            System.out.println("Registration Number: " + registrationNumber);
+            System.out.println("Registration Fee: " + registrationFee);
+        } else {
+            System.out.println("Not a valid Vehicle object.");
+        }
+    }
+
+    public static void main(String[] args) {
+        Vehicle v1 = new Vehicle("REG101", "Amit Kumar", "Car");
+        Vehicle v2 = new Vehicle("REG102", "Priya Sharma", "Motorbike");
+
+        v1.displayDetails();
+        v2.displayDetails();
+
+        // Update registration fee
+        Vehicle.updateRegistrationFee(750.0);
+
+        System.out.println("\nAfter updating registration fee:");
+        v1.displayDetails();
+        v2.displayDetails();
+    }
+}
