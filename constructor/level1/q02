@@ -1,0 +1,27 @@
+class Circle {
+    double radius;
+
+    // Default constructor
+    Circle() {
+        this(1.0); // Calls parameterized constructor with default value
+    }
+
+    // Parameterized constructor
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    void displayDetails() {
+        System.out.println("Radius: " + radius);
+        System.out.println("Area: " + Math.PI * radius * radius);
+        System.out.println("Circumference: " + 2 * Math.PI * radius);
+    }
+
+    public static void main(String[] args) {
+        Circle c1 = new Circle();
+        c1.displayDetails();
+
+        Circle c2 = new Circle(5.0);
+        c2.displayDetails();
+    }
+}
