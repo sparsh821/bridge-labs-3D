@@ -1,0 +1,42 @@
+interface Reservable {
+    void reserveItem(String borrower);
+    boolean checkAvailability();
+}
+
+abstract class LibraryItem {
+    private int itemId;
+    private String title;
+    private String author;
+
+    LibraryItem(int itemId, String title, String author) {
+        this.itemId = itemId;
+        this.title = title;
+        this.author = author;
+    }
+
+    abstract int getLoanDuration(); // in days
+
+    void getItemDetails() {
+        System.out.println(title + " by " + author + ", Loan Duration: " + getLoanDuration() + " days");
+    }
+}
+
+class Book extends LibraryItem implements Reservable {
+    private boolean available = true;
+
+    Book(int id, String title, String author) { super(id, title, author); }
+
+    public int getLoanDuration() { return 14; }
+    public void reserveItem(String borrower) { available = false; System.out.println("Reserved by " + borrower); }
+    public boolean checkAvailability() { return available; }
+}
+
+class Magazine extends LibraryItem {
+    Magazine(int id, String title, String author) { super(id, title, author); }
+    public int getLoanDuration() { return 7; }
+}
+
+class DVD extends LibraryItem {
+    DVD(int id, String title, String author) { super(id, title, author); }
+    public int getLoanDuration() { return 3; }
+}

@@ -1,0 +1,63 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Interface
+interface Department {
+    void assignDepartment(String dept);
+    String getDepartmentDetails();
+}
+
+// Abstract Class
+abstract class Employee {
+    private int employeeId;
+    private String name;
+    private double baseSalary;
+    private String department;
+
+    Employee(int employeeId, String name, double baseSalary) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+
+    // Abstract method
+    abstract double calculateSalary();
+
+    // Concrete method
+    void displayDetails() {
+        System.out.println("ID: " + employeeId + ", Name: " + name + ", Department: " + department + ", Salary: " + calculateSalary());
+    }
+
+    // Encapsulation
+    public void setBaseSalary(double salary) { this.baseSalary = salary; }
+    public double getBaseSalary() { return baseSalary; }
+
+    public void setDepartment(String dept) { this.department = dept; }
+    public String getDepartment() { return department; }
+}
+
+// Subclasses
+class FullTimeEmployee extends Employee {
+    FullTimeEmployee(int id, String name, double baseSalary) {
+        super(id, name, baseSalary);
+    }
+
+    @Override
+    double calculateSalary() {
+        return getBaseSalary(); // Fixed salary
+    }
+}
+
+class PartTimeEmployee extends Employee {
+    private int workHours;
+
+    PartTimeEmployee(int id, String name, double baseSalary, int workHours) {
+        super(id, name, baseSalary);
+        this.workHours = workHours;
+    }
+
+    @Override
+    double calculateSalary() {
+        return getBaseSalary() * workHours; // Based on hours worked
+    }
+}

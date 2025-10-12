@@ -1,0 +1,54 @@
+interface GPS {
+    String getCurrentLocation();
+    void updateLocation(String location);
+}
+
+abstract class Vehicle {
+    private String vehicleId;
+    private String driverName;
+    private double ratePerKm;
+
+    Vehicle(String vehicleId, String driverName, double ratePerKm) {
+        this.vehicleId = vehicleId;
+        this.driverName = driverName;
+        this.ratePerKm = ratePerKm;
+    }
+
+    abstract double calculateFare(double distance);
+
+    void getVehicleDetails() {
+        System.out.println(driverName + " driving " + vehicleId + " at " + ratePerKm + " per km.");
+    }
+
+    public double getRatePerKm() { return ratePerKm; }
+}
+
+class Car extends Vehicle implements GPS {
+    private String location = "Unknown";
+
+    Car(String vehicleId, String driverName, double ratePerKm) { super(vehicleId, driverName, ratePerKm); }
+
+    public double calculateFare(double distance) { return getRatePerKm() * distance; }
+    public String getCurrentLocation() { return location; }
+    public void updateLocation(String loc) { location = loc; }
+}
+
+class Bike extends Vehicle implements GPS {
+    private String location = "Unknown";
+
+    Bike(String vehicleId, String driverName, double ratePerKm) { super(vehicleId, driverName, ratePerKm); }
+
+    public double calculateFare(double distance) { return getRatePerKm() * distance * 0.8; }
+    public String getCurrentLocation() { return location; }
+    public void updateLocation(String loc) { location = loc; }
+}
+
+class Auto extends Vehicle implements GPS {
+    private String location = "Unknown";
+
+    Auto(String vehicleId, String driverName, double ratePerKm) { super(vehicleId, driverName, ratePerKm); }
+
+    public double calculateFare(double distance) { return getRatePerKm() * distance * 0.9; }
+    public String getCurrentLocation() { return location; }
+    public void updateLocation(String loc) { location = loc; }
+}

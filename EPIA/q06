@@ -1,0 +1,41 @@
+interface Discountable {
+    void applyDiscount(double percent);
+    double getDiscountDetails();
+}
+
+abstract class FoodItem {
+    private String itemName;
+    private double price;
+    private int quantity;
+
+    FoodItem(String itemName, double price, int quantity) {
+        this.itemName = itemName;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    abstract double calculateTotalPrice();
+
+    void getItemDetails() {
+        System.out.println(itemName + " - Quantity: " + quantity + ", Price per unit: " + price);
+    }
+
+    public double getPrice() { return price; }
+    public int getQuantity() { return quantity; }
+}
+
+class VegItem extends FoodItem implements Discountable {
+    private double discount = 0;
+
+    VegItem(String name, double price, int qty) { super(name, price, qty); }
+
+    public double calculateTotalPrice() { return getPrice() * getQuantity() * (1 - discount/100); }
+    public void applyDiscount(double percent) { discount = percent; }
+    public double getDiscountDetails() { return discount; }
+}
+
+class NonVegItem extends FoodItem {
+    NonVegItem(String name, double price, int qty) { super(name, price, qty); }
+
+    public double calculateTotalPrice() { return getPrice() * getQuantity() + 50; } // Extra charges
+}
