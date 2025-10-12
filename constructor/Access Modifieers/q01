@@ -1,0 +1,62 @@
+// Base class
+class Student {
+    public int rollNumber;
+    protected String name;
+    private double cgpa;
+
+    // Constructor
+    Student(int rollNumber, String name, double cgpa) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.cgpa = cgpa;
+    }
+
+    // Public method to access CGPA
+    public double getCgpa() {
+        return cgpa;
+    }
+
+    // Public method to modify CGPA
+    public void setCgpa(double cgpa) {
+        if (cgpa >= 0.0 && cgpa <= 10.0) {
+            this.cgpa = cgpa;
+        } else {
+            System.out.println("Invalid CGPA. Must be between 0 and 10.");
+        }
+    }
+
+    // Method to display student details
+    public void displayDetails() {
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Name: " + name);
+        System.out.println("CGPA: " + cgpa);
+    }
+}
+
+// Subclass demonstrating use of protected member
+class PostgraduateStudent extends Student {
+    String specialization;
+
+    PostgraduateStudent(int rollNumber, String name, double cgpa, String specialization) {
+        super(rollNumber, name, cgpa);
+        this.specialization = specialization;
+    }
+
+    void displayPostgraduateDetails() {
+        // Can access protected member 'name' directly
+        System.out.println("Postgraduate Student Name: " + name);
+        System.out.println("Specialization: " + specialization);
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("CGPA: " + getCgpa()); // Access private via public method
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student(101, "Rahul", 8.5);
+        s1.displayDetails();
+        s1.setCgpa(9.0);
+        s1.displayDetails();
+
+        PostgraduateStudent pg1 = new PostgraduateStudent(201, "Priya", 9.2, "Computer Science");
+        pg1.displayPostgraduateDetails();
+    }
+}

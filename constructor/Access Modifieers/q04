@@ -1,0 +1,67 @@
+// Base class
+class Employee {
+    public int employeeID;
+    protected String department;
+    private double salary;
+
+    // Constructor
+    Employee(int employeeID, String department, double salary) {
+        this.employeeID = employeeID;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    // Public method to get salary
+    public double getSalary() {
+        return salary;
+    }
+
+    // Public method to set salary
+    public void setSalary(double salary) {
+        if (salary >= 0) {
+            this.salary = salary;
+        } else {
+            System.out.println("Invalid salary.");
+        }
+    }
+
+    // Method to display employee details
+    public void displayDetails() {
+        System.out.println("Employee ID: " + employeeID);
+        System.out.println("Department: " + department);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+// Subclass demonstrating access to employeeID and department
+class Manager extends Employee {
+    int teamSize;
+
+    Manager(int employeeID, String department, double salary, int teamSize) {
+        super(employeeID, department, salary);
+        this.teamSize = teamSize;
+    }
+
+    void displayManagerDetails() {
+        // Can access public employeeID directly
+        System.out.println("Employee ID: " + employeeID);
+
+        // Can access protected department directly
+        System.out.println("Department: " + department);
+
+        // Cannot access private salary directly, must use getter
+        System.out.println("Salary: " + getSalary());
+
+        System.out.println("Team Size: " + teamSize);
+    }
+
+    public static void main(String[] args) {
+        Employee e1 = new Employee(101, "IT", 50000.0);
+        e1.displayDetails();
+        e1.setSalary(55000.0);
+        e1.displayDetails();
+
+        Manager m1 = new Manager(201, "HR", 70000.0, 10);
+        m1.displayManagerDetails();
+    }
+}
